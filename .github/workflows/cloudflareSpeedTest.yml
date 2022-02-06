@@ -20,11 +20,12 @@ on: [push]
 jobs:
   test:
     runs-on: ubuntu-latest
-    name: Run CloudflareSpeedTest
+    name: CloudflareSpeedTest
     steps:
       - uses: actions/checkout@v2.0.0
-      - run: mkdir result && chmod +x CloudflareST && ./CloudflareST -o result/result.csv -p 20 -dn 20 -dt 5 -tl 190 -sl 20 -url https://download-proxy.zhaofengying.com/api/download?url=https://cdn.azul.com/zulu/bin/zulu17.32.13-ca-fx-jdk17.0.2-win_x64.zip
-      - name: Upload result
+      - name: Run CloudflareSpeedTest
+        run: mkdir result && chmod +x CloudflareST && ./CloudflareST -o result/result.csv -p 20 -dn 20 -dt 5 -tl 190 -sl 20 -url https://download-proxy.zhaofengying.com/api/download?url=http://speedtest-sfo3.digitalocean.com/1gb.test
+      - name: Upload Result
         uses: actions/upload-artifact@v1
         with:
           name: cloudflareSpeedTest-result
